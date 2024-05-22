@@ -1,4 +1,3 @@
-const mysql = require("mysql2");
 const express = require("express");
 const cors = require("cors");
 //const todolistRoutes=require("./routes/todo");
@@ -7,6 +6,11 @@ const empRoutes = require("./routes/employees");
 const salesRoutes = require("./routes/sales");
 const customersRoutes = require("./routes/customers");
 const custinq = require("./routes/inquiry");
+
+const port = process.env.PORT || 3000;
+const nodeEnv = process.env.NODE_ENV;
+const mySetting = process.env.MY_SETTING;
+
 const app = express();
 
 app.use(express.json());
@@ -26,6 +30,6 @@ app.use("/emp", empRoutes);
 app.use("/sales", salesRoutes);
 app.use("/customers", customersRoutes);
 app.use("/inq", custinq);
-app.listen(9999, () => {
+app.listen(port, () => {
   console.log("Server Started...");
 });
