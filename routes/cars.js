@@ -16,7 +16,7 @@ const connectionDetails = {
 
 //Queries will start from here
 app.get("/", (request, response) => {
-  var sql = "select * from Cars ";
+  var sql = "select * from cars ";
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql, (error, result) => {
     if (error == null) {
@@ -39,7 +39,7 @@ app.get("/", (request, response) => {
 app.post("/car/", (request, response) => {
   var id = request.body.CarId;
 
-  var sql = `select * from Cars where CarID=${id}`;
+  var sql = `select * from cars where CarID=${id}`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql, (error, result) => {
     if (error == null) {
@@ -65,7 +65,7 @@ app.post("/", upload.single("image"), (request, response) => {
   var vin = request.body.VIN;
   var price = request.body.Price;
   var status = request.body.Status;
-  var sql1 = `insert into Cars(Make,Model,Year,VIN,Price,Status,Image) values("${make}","${model}","${year}","${vin}",${price},"${status}","${request.file.filename}");`;
+  var sql1 = `insert into cars(Make,Model,Year,VIN,Price,Status,Image) values("${make}","${model}","${year}","${vin}",${price},"${status}","${request.file.filename}");`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql1, (error, result) => {
     if (error == null) {
@@ -98,7 +98,7 @@ app.put("/", (request, response) => {
   var year = request.body.Year;
   var status = request.body.Status;
 
-  var sql1 = `update Cars set Model='${model}',Price='${price}',Year='${year}',Status='${status}' where CarID=${id};`;
+  var sql1 = `update cars set Model='${model}',Price='${price}',Year='${year}',Status='${status}' where CarID=${id};`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql1, (error, result) => {
     if (error == null) {
@@ -115,7 +115,7 @@ app.put("/status/", (request, response) => {
   var id = request.body.CarID;
   var status = request.body.Status;
 
-  var sql1 = `update Cars set Status='${status}' where CarID=${id};`;
+  var sql1 = `update cars set Status='${status}' where CarID=${id};`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql1, (error, result) => {
     if (error == null) {
@@ -145,7 +145,7 @@ app.delete("/", (request, response) => {
 
   var connection1 = mysql.createConnection(connectionDetails);
   connection1.query(
-    `SELECT image FROM Cars WHERE CarID = ${id}`,
+    `SELECT image FROM cars WHERE CarID = ${id}`,
     (error, results) => {
       if (error) {
         let reply = {
@@ -157,7 +157,7 @@ app.delete("/", (request, response) => {
         connection1.end();
       } else {
         const filename = results[0].image;
-        var sql1 = `delete from Cars where CarID=${id};`;
+        var sql1 = `delete from cars where CarID=${id};`;
         var connection = mysql.createConnection(connectionDetails);
         connection.query(sql1, (error, result) => {
           if (error == null) {

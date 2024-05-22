@@ -14,7 +14,7 @@ const connectionDetails = {
 
 //Queries will start from here
 app.get("/", (request, response) => {
-  var sql = "select * from Employees";
+  var sql = "select * from employees";
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql, (error, result) => {
     if (error == null) {
@@ -53,7 +53,7 @@ app.post("/", (request, response) => {
   var pass = request.body.Password;
 
   var hash = String(crypto.SHA256(pass));
-  var sql1 = `insert into Employees(Name,Position,ContactInfo,Password) values('${name}','sales','${email}','${hash}');`;
+  var sql1 = `insert into employees(Name,Position,ContactInfo,Password) values('${name}','sales','${email}','${hash}');`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql1, (error, result) => {
     if (error == null) {
@@ -90,7 +90,7 @@ app.post("/", (request, response) => {
 
 app.delete("/", (request, response) => {
   var id = request.body.id;
-  var sql1 = `delete from Employees where EmployeeID=${id};`;
+  var sql1 = `delete from employees where EmployeeID=${id};`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql1, (error, result) => {
     if (error == null) {
@@ -111,7 +111,7 @@ app.post("/login", (request, response) => {
 
   // create a sql statement
   const statement = `
-        select EmployeeId, name, position from Employees 
+        select EmployeeId, name, position from employees 
         where
             contactinfo = '${Email}' and password = '${encryptedPassword}'
       `;

@@ -14,7 +14,7 @@ const connectionDetails = {
 
 //Queries will start from here
 app.get("/", (request, response) => {
-  var sql = "select * from Customers";
+  var sql = "select * from customers";
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql, (error, result) => {
     if (error == null) {
@@ -29,7 +29,7 @@ app.get("/", (request, response) => {
 
 app.get("/id/", (request, response) => {
   var id = request.headers.id;
-  var sql = `select * from Customers where CustomerID=${id}`;
+  var sql = `select * from customers where CustomerID=${id}`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql, (error, result) => {
     if (error == null) {
@@ -95,7 +95,7 @@ app.post("/", (request, response) => {
   var address = request.body.Address;
   var pass = request.body.Password;
   var hash = String(crypto.SHA256(pass));
-  var sql1 = `insert into Customers(Name,Email,Phone,Address,password) values('${name}','${email}','${phone}','${address}','${hash}');`;
+  var sql1 = `insert into customers(Name,Email,Phone,Address,password) values('${name}','${email}','${phone}','${address}','${hash}');`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql1, (error, result) => {
     if (error == null) {
@@ -148,7 +148,7 @@ app.put("/", (request, response) => {
 
   var hash = String(crypto.SHA256(pass));
 
-  var sql1 = `update Customers set Name='${name}',Email='${email}',Phone='${phone}',Address='${address}',password='${hash}' where CustomerID=${id};`;
+  var sql1 = `update customers set Name='${name}',Email='${email}',Phone='${phone}',Address='${address}',password='${hash}' where CustomerID=${id};`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql1, (error, result) => {
     if (error == null) {

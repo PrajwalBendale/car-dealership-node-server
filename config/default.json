@@ -1,6 +1,6 @@
 {
-    "host" : "localhost",
-    "database" : "project",
-    "user" : "pben",
-    "password" : "52872"
+  "host": "sql.freedb.tech",
+  "database": "freedb_projec",
+  "user": "freedb_pben872",
+  "password": "mvYkeR6*ErgbC5@"
 }

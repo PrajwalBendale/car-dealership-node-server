@@ -13,7 +13,7 @@ const connectionDetails = {
 
 //Queries will start from here
 app.get("/", (request, response) => {
-  var sql = "select * from Sales";
+  var sql = "select * from sales";
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql, (error, result) => {
     if (error == null) {
@@ -28,7 +28,7 @@ app.get("/", (request, response) => {
 
 app.get("/emp/", (request, response) => {
   var id = request.headers.id;
-  var sql = `select * from Sales where EmployeeID=${id}`;
+  var sql = `select * from sales where EmployeeID=${id}`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql, (error, result) => {
     if (error == null) {
@@ -78,7 +78,7 @@ app.post("/", (request, response) => {
   var cid = request.body.CustomerID;
   var eid = request.body.EmployeeID;
   var price = request.body.SalePrice;
-  var sql1 = `insert into Sales(CarID,CustomerID,EmployeeID,SaleDate,SalePrice) values(${carid},${cid},${eid},CONVERT(SYSDATE(), DATE),${price});`;
+  var sql1 = `insert into sales(CarID,CustomerID,EmployeeID,SaleDate,SalePrice) values(${carid},${cid},${eid},CONVERT(SYSDATE(), DATE),${price});`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql1, (error, result) => {
     if (error == null) {
@@ -98,7 +98,7 @@ app.put("/", (request, response) => {
   var phone = request.body.EmployeeID;
   var address = request.body.SaleDate;
   var pass = request.body.SalePrice;
-  var sql1 = `update Sales set CarID=${name},CustomerID=${email},EmployeeID=${phone},SaleDate='${address}',SalePrice=${pass} where SaleID=${id};`;
+  var sql1 = `update sales set CarID=${name},CustomerID=${email},EmployeeID=${phone},SaleDate='${address}',SalePrice=${pass} where SaleID=${id};`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql1, (error, result) => {
     if (error == null) {
@@ -113,7 +113,7 @@ app.put("/", (request, response) => {
 
 app.delete("/", (request, response) => {
   var id = request.body.id;
-  var sql1 = `delete from Sales where SaleID=${id};`;
+  var sql1 = `delete from sales where SaleID=${id};`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql1, (error, result) => {
     if (error == null) {
