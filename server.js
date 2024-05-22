@@ -24,6 +24,9 @@ app.use(
   })
 );
 app.use(express.static("images"));
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
 //app.use('/todos',todolistRoutes);
 app.use("/cars", carsRoutes);
 app.use("/emp", empRoutes);
