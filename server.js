@@ -19,7 +19,7 @@ app.use(
   cors({
     origin: "*", // Allow requests from a specific origin
     methods: "*", // Limit methods to specific ones
-    allowedHeaders: ["Content-Type", "Authorization"], // Limit allowed headers
+    allowedHeaders: "*", //["Content-Type", "Authorization"], // Limit allowed headers
     credentials: true, // Allow credentials if necessary
   })
 );

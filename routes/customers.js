@@ -60,7 +60,7 @@ app.get("/id/", (request, response) => {
 
 app.get("/sales", (request, response) => {
   var id = request.headers.id;
-
+  
   var sql = `select *from sales,cars where sales.CustomerID=${id} and cars.CarID=sales.CarID;`;
   var connection = mysql.createConnection(connectionDetails);
   connection.query(sql, (error, result) => {
